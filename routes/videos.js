@@ -32,7 +32,12 @@ router.post('/', function(req, res){
     var videoUrl = cloudinary.url(publicId + '.mp4', {resource_type: 'video'});
     var imgUrl = cloudinary.url(publicId + '.jpg', {resource_type: 'video'});
 
-    vf.createTarget({name: publicId, image: imgUrl, width:32.0}, function(err, vuforiaResults){
+    vf.createTarget({
+      name: publicId,
+      image: imgUrl,
+      width: 64.0,
+      application_metadata: videoUrl
+    }, function(err, vuforiaResults){
       res.send({
         vf: vuforiaResults,
         video_url: videoUrl,
